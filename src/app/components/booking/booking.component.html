@@ -1,81 +1,46 @@
-<h4>Novo Booking</h4>
-<!-- Basic Button -->
-<!-- <div class="mb">
-  <button mat-button>Save</button>
-  <button mat-button>Cancel</button>
-  <button mat-button>Delete</button>
-</div> -->
+<h4>Reservas</h4>
+<form [formGroup]="formGroup">
+    <!-- input -->
+    <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+        <input type="email" matInput placeholder="Enter Customer Email" formControlName="email" />
+        <mat-label>Email</mat-label>
+        <mat-hint align="end">No máximo 30 characters</mat-hint>
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error *ngIf="getFormControl('email').hasError('required')" [innerHTML]="getErrorMessage('email', 'required')"></mat-error>
+        <mat-error *ngIf="getFormControl('email').hasError('email')" [innerHTML]="getErrorMessage('email', 'email')"></mat-error>
+    </mat-form-field>
 
-<!-- Color Variants -->
-<!-- <div class="mb">
-  <button mat-button color="primary" class="mr">Save</button>
-  <button mat-button color="accent" class="mr">Cancel</button>
-  <button mat-button color="warn" class="mr">Delete</button>
-</div> -->
+    <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+        <input type="text" matInput placeholder="Enter Customer Name" formControlName="customerName" />
+        <mat-label>Nome do Cliente</mat-label>
+        <mat-hint align="end">No máximo 50 characters</mat-hint>
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="getFormControl('customerName').hasError('required')" [innerHTML]="getErrorMessage('customerName', 'required')"></mat-error>
+        <mat-error *ngIf="getFormControl('customerName').hasError('pattern')" [innerHTML]="getErrorMessage('customerName', 'pattern')"></mat-error>
+        <mat-error *ngIf="getFormControl('customerName').hasError('maxlength')" [innerHTML]="getErrorMessage('customerName', 'maxlength')"></mat-error>
+        <mat-error *ngIf="getFormControl('customerName').hasError('minlength')" [innerHTML]="getErrorMessage('customerName', 'minlength')"></mat-error>
+    </mat-form-field>
 
-<!-- Flat Buttons -->
-<!-- <div class="mb">
-  <button mat-flat-button color="primary" class="mr">Save</button>
-  <button mat-flat-button color="accent" class="mr">Cancel</button>
-  <button mat-flat-button color="warn" class="mr">Delete</button>
-</div> -->
+    <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+        <mat-select formControlName="country">
+            <mat-option *ngFor="let country of countries" [value]="country.id">{{country.countryName}}</mat-option>
+        </mat-select>
+        <mat-label>País</mat-label>
+        <mat-hint align="end">Escolha um País</mat-hint>
+        <mat-icon matPrefix>place</mat-icon>
 
-<!-- Raised Buttons -->
-<!-- <div class="mb">
-  <button mat-raised-button color="primary" class="mr">Save</button>
-  <button mat-raised-button color="accent" class="mr">Cancel</button>
-  <button mat-raised-button color="warn" class="mr">Delete</button>
-</div> -->
+        <mat-error *ngIf="getFormControl('country').hasError('required')" [innerHTML]="getErrorMessage('country', 'required')"></mat-error>
+    </mat-form-field>
 
-<!-- Stroked Buttons -->
-<div class="mb">
-    <button mat-stroked-button color="primary" class="mr"><i id="edit" class="material-icons">save</i>Salvar</button>
-    <button mat-stroked-button color="accent" class="mr"><i id="cancel" class="material-icons">cancel</i>Cancelar</button>
-    <button mat-stroked-button color="warn" class="mr"><i id="delete" class="material-icons">delete</i>Deletar</button>
-</div>
+    <!-- Stroked Buttons -->
+    <div class="mb mt">
+        <button mat-stroked-button color="primary" class="mr"><i id="edit" class="material-icons">save</i>Salvar</button>
+        <button mat-stroked-button color="accent" class="mr" type="button"><i id="cancel" class="material-icons">cancel</i>Cancelar</button>
+        <button mat-stroked-button color="warn" class="mr" type="button"><i id="delete" class="material-icons">delete</i>Deletar</button>
+    </div>
 
-<!-- disableRipple -->
-<!-- <div class="mb">
-  <button mat-stroked-button color="primary" class="mr" disableRipple>Save</button>
-  <button mat-stroked-button color="accent" class="mr" disableRipple>Cancel</button>
-  <button mat-stroked-button color="warn" class="mr" disableRipple>Delete</button>
-</div> -->
+    <!--<div>
+        {{formGroup.value | json}}
+    </div>-->
 
-<!-- Icon Buttons -->
-<!-- <div class="mb">
-  <button mat-icon-button color="primary" class="mr">
-    <mat-icon>save</mat-icon>
-  </button>
-  <button mat-icon-button color="accent" class="mr">
-    <mat-icon>cancel</mat-icon>
-  </button>
-  <button mat-icon-button color="warn" class="mr">
-    <mat-icon>delete</mat-icon>
-  </button>
-</div> -->
-
-<!-- Fab -->
-<!-- <div class="mb">
-  <button mat-fab color="primary" class="mr">
-    <mat-icon>save</mat-icon>
-  </button>
-  <button mat-fab color="accent" class="mr">
-    <mat-icon>cancel</mat-icon>
-  </button>
-  <button mat-fab color="warn" class="mr">
-    <mat-icon>delete</mat-icon>
-  </button>
-</div> -->
-
-<!-- Mini-Fab -->
-<!-- <div class="mb">
-  <button mat-mini-fab color="primary" class="mr">
-    <mat-icon>save</mat-icon>
-  </button>
-  <button mat-mini-fab color="accent" class="mr">
-    <mat-icon>cancel</mat-icon>
-  </button>
-  <button mat-mini-fab color="warn" class="mr">
-    <mat-icon>delete</mat-icon>
-  </button>
-</div> -->
+</form>

@@ -1,37 +1,103 @@
-<h4>Reservas</h4>
+<h2>Reservas.com</h2>
+<h3>Encontre ofertas em hotéis, casas, apartamentos, etc</h3>
+<h5>De hotéis-fazenda aconchegantes a apartamentos modernos na cidade</h5>
 <form [formGroup]="formGroup">
-    <!-- input -->
-    <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
-        <input type="email" matInput placeholder="Enter Customer Email" formControlName="email" />
-        <mat-label>Email</mat-label>
-        <mat-hint align="end">No máximo 30 characters</mat-hint>
-        <mat-icon matPrefix>email</mat-icon>
-        <mat-error *ngIf="getFormControl('email').hasError('required')" [innerHTML]="getErrorMessage('email', 'required')"></mat-error>
-        <mat-error *ngIf="getFormControl('email').hasError('email')" [innerHTML]="getErrorMessage('email', 'email')"></mat-error>
-    </mat-form-field>
+    <div class="flex">
+        <div class="box-1">
+            <!-- input -->
+            <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+                <input type="email" matInput placeholder="Entre com Email do Cliente" formControlName="email" [errorStateMatcher]="customErrorStateMatcher" />
+                <mat-label class="ml">Email</mat-label>
+                <mat-hint align="end">No máximo 30 characters</mat-hint>
+                <mat-icon matPrefix>email</mat-icon>
+                <mat-error *ngIf="getFormControl('email').hasError('required')" [innerHTML]="getErrorMessage('email', 'required')"></mat-error>
+                <mat-error *ngIf="getFormControl('email').hasError('email')" [innerHTML]="getErrorMessage('email', 'email')"></mat-error>
+            </mat-form-field>
 
-    <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
-        <input type="text" matInput placeholder="Enter Customer Name" formControlName="customerName" />
-        <mat-label>Nome do Cliente</mat-label>
-        <mat-hint align="end">No máximo 50 characters</mat-hint>
-        <mat-icon matPrefix>person</mat-icon>
-        <mat-error *ngIf="getFormControl('customerName').hasError('required')" [innerHTML]="getErrorMessage('customerName', 'required')"></mat-error>
-        <mat-error *ngIf="getFormControl('customerName').hasError('pattern')" [innerHTML]="getErrorMessage('customerName', 'pattern')"></mat-error>
-        <mat-error *ngIf="getFormControl('customerName').hasError('maxlength')" [innerHTML]="getErrorMessage('customerName', 'maxlength')"></mat-error>
-        <mat-error *ngIf="getFormControl('customerName').hasError('minlength')" [innerHTML]="getErrorMessage('customerName', 'minlength')"></mat-error>
-    </mat-form-field>
+            <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+                <input type="text" matInput placeholder="Entre com Nome do Cliente" formControlName="customerName" [errorStateMatcher]="customErrorStateMatcher" />
+                <mat-label class="ml">Nome do Cliente</mat-label>
+                <mat-hint align="end">No máximo 50 characters</mat-hint>
+                <mat-icon matPrefix>person</mat-icon>
+                <mat-error *ngIf="getFormControl('customerName').hasError('required')" [innerHTML]="getErrorMessage('customerName', 'required')"></mat-error>
+                <mat-error *ngIf="getFormControl('customerName').hasError('pattern')" [innerHTML]="getErrorMessage('customerName', 'pattern')"></mat-error>
+                <mat-error *ngIf="getFormControl('customerName').hasError('maxlength')" [innerHTML]="getErrorMessage('customerName', 'maxlength')"></mat-error>
+                <mat-error *ngIf="getFormControl('customerName').hasError('minlength')" [innerHTML]="getErrorMessage('customerName', 'minlength')"></mat-error>
+            </mat-form-field>
 
-    <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
-        <mat-select formControlName="country">
-            <mat-option *ngFor="let country of countries" [value]="country.id">{{country.countryName}}</mat-option>
-        </mat-select>
-        <mat-label>País</mat-label>
-        <mat-hint align="end">Escolha um País</mat-hint>
-        <mat-icon matPrefix>place</mat-icon>
+            <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+                <mat-select formControlName="country">
+                    <mat-option *ngFor="let country of countries" [value]="country.id">{{country.countryName}}</mat-option>
+                </mat-select>
+                <mat-label class="ml">País</mat-label>
+                <mat-hint align="end">Escolha um País</mat-hint>
+                <mat-icon matPrefix>place</mat-icon>
+                <mat-error *ngIf="getFormControl('country').hasError('required')" [innerHTML]="getErrorMessage('country', 'required')"></mat-error>
+            </mat-form-field>
 
-        <mat-error *ngIf="getFormControl('country').hasError('required')" [innerHTML]="getErrorMessage('country', 'required')"></mat-error>
-    </mat-form-field>
+            <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+                <mat-select formControlName="city">
+                    <mat-option *ngFor="let city of cities" [value]="city.cityName">{{city.cityName}}</mat-option>
+                </mat-select>
+                <mat-label class="ml">Cidade</mat-label>
+                <mat-hint align="end">Escolha uma Cidade</mat-hint>
+                <mat-icon matPrefix>explore</mat-icon>
+                <mat-error *ngIf="getFormControl('city').hasError('required')" [innerHTML]="getErrorMessage('city', 'required')"></mat-error>
+            </mat-form-field>
 
+            <div class="ml mt">
+                <mat-checkbox color="primary" formControlName="receiveNewsLetters">Receba nossas News Letters</mat-checkbox>
+            </div>
+
+            <div class="ml mt mb">
+                <mat-label>Hobbies:</mat-label>
+                <div>
+                    <mat-checkbox formControlName="allHobbies" (change)="onAllHobbiesCheckBoxChange()" [indeterminate]="!allHobbiesSelected() && !noHobbiesSelected()">Todos</mat-checkbox>
+                </div>
+                <div formArrayName="hobbies">
+                    <div *ngFor="let hobby of hobbiesFormArray.controls; let i = index">
+                        <mat-checkbox [formControl]="hobby" color="primary" (change)="onHobbyChange(i)">{{hobbies[i].hobbyName}}</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ml mt mb">
+                <mat-radio-group formControlName="gender">
+                    <mat-label class="mr">Gênero:</mat-label>
+                    <mat-radio-button value="male" class="mr">Masculino</mat-radio-button>
+                    <mat-radio-button value="female" class="mr">Feminino</mat-radio-button>
+                    <mat-radio-button value="others" class="mr">Outros</mat-radio-button>
+                    <mat-error *ngIf="getFormControl('gender').hasError('required') && getFormControl('gender').touched" [innerHTML]="getErrorMessage('gender', 'required')"></mat-error>
+                </mat-radio-group>
+            </div>
+
+        </div>
+        <!-- end of box 1-->
+
+        <div class="box-2">
+            <!-- date picker -->
+            <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+                <mat-label class="ml">Data de Nascimento:</mat-label>
+                <input type="text" matInput [matDatepicker]="dobDatepicker" formControlName="dateOfBirth" (dateChange)="onDateChange()">
+                <!-- [matDatepickerFilter]="dateFilter"-->
+                <!-- [min]="minDate" [max]="maxDate" -->
+
+                <mat-datepicker-toggle matSuffix [for]="dobDatepicker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+
+                <mat-datepicker #dobDatepicker startView="month"></mat-datepicker>
+                <!--<mat-datepicker #dobDatepicker touchUi></mat-datepicker> popup calendario-->
+                <!-- startView: month | year | multi-year -->
+                <!-- [startAt]="startDate" -->
+
+                <!-- touchUi -->
+                <mat-hint align="end">{{dateHint}}</mat-hint>
+                <mat-icon matPrefix>calendar_today</mat-icon>
+                <mat-error *ngIf="getFormControl('dateOfBirth').hasError('required')" [innerHTML]="getErrorMessage('dateOfBirth', 'required')"></mat-error>
+            </mat-form-field>
+        </div>
+    </div>
     <!-- Stroked Buttons -->
     <div class="mb mt">
         <button mat-stroked-button color="primary" class="mr"><i id="edit" class="material-icons">save</i>Salvar</button>

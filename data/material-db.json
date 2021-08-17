@@ -54,31 +54,31 @@
     ],
     "cities": [{
             "id": 1,
-            "cityName": "Abu Dhabi"
+            "cityName": "Americana"
         },
         {
             "id": 2,
-            "cityName": "Amsterdam"
+            "cityName": "Avaré"
         },
         {
             "id": 3,
-            "cityName": "Berlin"
+            "cityName": "Araçoiaba da Serra"
         },
         {
             "id": 4,
-            "cityName": "Chicago"
+            "cityName": "Arandu"
         },
         {
             "id": 5,
-            "cityName": "Doha"
+            "cityName": "Araras"
         },
         {
             "id": 6,
-            "cityName": "Dubai"
+            "cityName": "Águas de Lindóia"
         },
         {
             "id": 7,
-            "cityName": "Istanbul"
+            "cityName": "Águas de São Pedro"
         },
         {
             "id": 8,
@@ -86,55 +86,55 @@
         },
         {
             "id": 9,
-            "cityName": "London"
+            "cityName": "Agudos"
         },
         {
             "id": 10,
-            "cityName": "Los Angeles"
+            "cityName": "Aparecida"
         },
         {
             "id": 11,
-            "cityName": "Moscow"
+            "cityName": "Bauru"
         },
         {
             "id": 12,
-            "cityName": "Mumbai"
+            "cityName": "Bebedouro"
         },
         {
             "id": 13,
-            "cityName": "New York"
+            "cityName": "Barão de Antonina"
         },
         {
             "id": 14,
-            "cityName": "Paris"
+            "cityName": "Cerquilho"
         },
         {
             "id": 15,
-            "cityName": "San Francisco"
+            "cityName": "Cajamar"
         },
         {
             "id": 16,
-            "cityName": "Seoul"
+            "cityName": "Gastão Vidigal"
         },
         {
             "id": 17,
-            "cityName": "Singapore"
+            "cityName": "São Bernardo do Campo"
         },
         {
             "id": 18,
-            "cityName": "Sydney"
+            "cityName": "São Caetano do Sul"
         },
         {
             "id": 19,
-            "cityName": "Tokyo"
+            "cityName": "São Francisco"
         },
         {
             "id": 20,
-            "cityName": "Toronto"
+            "cityName": "São José do Rio Pardo"
         },
         {
             "id": 21,
-            "cityName": "Washington"
+            "cityName": "São José dos Campos"
         }
     ],
     "bookings": [{
